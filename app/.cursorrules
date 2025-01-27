@@ -1,0 +1,417 @@
+# Angular Development Guide
+
+## Core Development Principles
+
+1. **Provide Concise Examples**  
+   Share precise Angular and TypeScript examples with clear explanations.
+
+2. **Immutability & Pure Functions**  
+   Apply immutability principles and pure functions wherever possible, especially within services and state management, to ensure predictable outcomes and simplified debugging.
+
+3. **Component Composition**  
+   Favor component composition over inheritance to enhance modularity, enabling reusability and easy maintenance.
+
+4. **Meaningful Naming**  
+   Use descriptive variable names like `isUserLoggedIn`, `userPermissions`, and `fetchData()` to communicate intent clearly.
+
+5. **File Naming**  
+   Enforce kebab-case naming for files (e.g., `user-profile.component.ts`) and match Angular's conventions for file suffixes.
+
+## Project Structure
+
+### Component Organization
+- Place standalone components in separate folders named after the component
+- Each component folder should contain:
+  - HTML file (template)
+  - TypeScript file (logic)
+  - SCSS file (styles)
+  - Spec file (testing)
+
+### Styles Organization
+- Create a dedicated styles folder containing:
+  - Breakpoint definitions
+  - Reusable mixins
+  - Global styles
+- Implement Tailwind CSS for utility-first styling
+- Use Tailwind Components for consistent UI elements
+- Follow mobile-first responsive design principles
+- Integrate Heroicons for consistent iconography
+
+### Services and Logic
+- Place business logic within a dedicated services folder
+- Maintain separation of concerns between components and services
+- Implement service-specific interfaces and types
+
+## Angular and TypeScript Best Practices
+
+### Type Safety and TypeScript Features
+- Define data models using interfaces for explicit types
+- Maintain strict typing to avoid `any`
+- Utilize TypeScript's full type system for code reliability
+- Implement proper error handling with custom types
+- Leverage optional chaining (`?.`) and nullish coalescing (`??`) operators
+- Structure files consistently with clear section comments:
+  - Imports at the top
+  - Class definition preceded by class-level documentation
+  ```typescript
+  // ========================
+  // Imports
+  // ========================
+  import { Component } from '@angular/core';
+  
+  // ========================
+  // Class Definition
+  // ========================
+  @Component({...})
+  export class ExampleComponent {
+    // ========================
+    // Properties
+    // ========================
+    private readonly apiUrl: string;
+    public isLoading: boolean;
+    
+    // ========================
+    // Constructor
+    // ========================
+    constructor() {}
+    
+    // ========================
+    // Public Methods
+    // ========================
+    public getData(): void {}
+    
+    // ========================
+    // Protected Methods
+    // ========================
+    protected validateInput(): boolean {}
+    
+    // ========================
+    // Private Methods
+    // ========================
+    private handleError(error: Error): void {}
+  }
+  
+  // ========================
+  // Exports
+  // ========================
+  export { SomeType };
+
+### Code Structure
+- Organize imports according to the following order:
+  1. Angular core and common modules
+  2. RxJS modules
+  3. Angular-specific modules (e.g., `FormsModule`)
+  4. Core application imports
+  5. Shared module imports
+  6. Environment-specific imports (e.g., `environment.ts`)
+  7. Relative path imports
+
+### Modern Angular Features
+- Utilize standalone components for better modularity
+- Implement signals for reactive state management
+- Use direct service injection with `inject` function
+- Apply deferrable views for optimized loading
+- Leverage NgOptimizedImage for efficient image handling
+- Use async pipe for observables in templates
+- Enable lazy loading for feature modules
+
+## File Naming Conventions
+
+- **Components**: `*.component.ts`
+- **Services**: `*.service.ts`
+- **Modules**: `*.module.ts`
+- **Directives**: `*.directive.ts`
+- **Pipes**: `*.pipe.ts`
+- **Tests**: `*.spec.ts`
+- Use kebab-case for all filenames
+
+## Coding Standards
+
+- Use single quotes for string literals
+- Implement 2-space indentation
+- Avoid trailing whitespace and unused variables
+- Prefer `const` for constants and immutable variables
+- Use template literals for string interpolation
+- Focus on reusable, modular code
+- Align with Angular's official style guide
+Development Methodology
+General Principles
+
+Follow agile methodologies
+Break tasks into distinct, prioritized steps
+Follow DRY (Don't Repeat Yourself) principles
+Prioritize modularity, performance, and security
+Use verbosity levels for different contexts:
+
+V0: Code golf (default)
+V1: Concise
+V2: Simple
+V3: Verbose, DRY with extracted functions
+
+
+
+Task Management
+
+Break down tasks before implementation
+Prioritize steps clearly
+Address tasks systematically
+Avoid repeating work
+
+Coding Standards
+General Rules
+
+Use single quotes for string literals
+Implement 2-space indentation
+Avoid trailing whitespace and unused variables
+Prefer const for constants and immutable variables
+Use template literals for string interpolation
+Maximum line length: 80 characters
+Maximum function parameters: 4
+Maximum function length: 50 executable lines
+Maximum nesting depth: 2 levels
+Preserve JSDoc comments during refactoring
+
+Loop Preferences
+
+Prefer forNext function over traditional loops
+
+Location: libs/smart-ngrx/src/common/for-next.function.ts
+
+
+Avoid forEach and for...of when possible
+Use functional programming approaches where appropriate
+
+Code Organization
+
+Keep functions concise and focused
+Maintain clear separation of concerns
+Follow consistent naming conventions
+Structure code for maximum readability
+Use TypeScript features effectively
+
+Testing with Jest
+
+Write comprehensive unit tests
+Focus on edge cases and error conditions
+Maintain high test coverage
+Use Jest's modern features effectively
+Follow testing best practices for Angular components
+
+Configuration Files
+
+Follow rules defined in:
+
+.eslintrc.json
+.prettierrc
+.htmlhintrc
+.editorconfig
+
+
+
+Documentation
+
+Maintain clear, concise documentation
+Keep JSDoc comments intact during refactoring
+Document public APIs thoroughly
+Include usage examples where appropriate
+
+[Rest of the sections remain the same...]
+Quality Assurance
+Code Review Guidelines
+
+Verify all imports are necessary and correct
+Check proper naming of key components
+Ensure code meets performance standards
+Verify maintainability and readability
+Confirm proper error handling
+Check for proper typing and null checks
+
+Performance Considerations
+
+Regular performance auditing
+Optimize bundle size
+Implement lazy loading where appropriate
+Use Angular's built-in performance features
+Monitor and optimize memory usage
+
+Error Handling
+
+Implement comprehensive error handling
+Use typed error objects
+Provide meaningful error messages
+Handle edge cases appropriately
+Log errors for debugging
+
+Development Process
+Before Committing Code
+
+Double-check implementation
+Verify all tests pass
+Ensure code meets style guidelines
+Check for potential memory leaks
+Verify proper error handling
+Confirm proper typing
+
+Code Review Process
+
+Review for clarity and maintainability
+Check adherence to style guidelines
+Verify proper error handling
+Ensure adequate test coverage
+Check for performance implications
+
+Remember to refer to Angular's official documentation for components, services, and modules to ensure best practices and maintain code quality and maintainability.Version 5 of 7
+
+// interfaces/user.interface.ts
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  profileImage: string;
+  role: 'superuser' | 'user';
+  location: {
+    coordinates: {
+      latitude: number;
+      longitude: number;
+    };
+    city: string;
+    country: string;
+    timezone: string;
+  };
+  workingHours: {
+    start: string; // 24h format "HH:mm"
+    end: string;
+    workDays: number[]; // 0-6, where 0 is Sunday
+  };
+  languages: {
+    code: string; // ISO language code
+    proficiency: 'native' | 'fluent' | 'intermediate' | 'basic';
+  }[];
+  groups: string[]; // Array of group IDs
+  preferences: {
+    doNotDisturb: boolean;
+    preferredContactHours: {
+      start: string;
+      end: string;
+    };
+    notifications: {
+      email: boolean;
+      inApp: boolean;
+    };
+  };
+  status: {
+    online: boolean;
+    message: string;
+    lastActive: Date;
+  };
+}
+
+// interfaces/group.interface.ts
+interface Group {
+  id: string;
+  name: string;
+  description: string;
+  createdBy: string; // User ID
+  members: string[]; // Array of user IDs
+  settings: {
+    visibility: 'public' | 'private';
+    joinPolicy: 'open' | 'invite-only';
+  };
+  calendar: {
+    events: GroupEvent[];
+    sharedCalendarUrl?: string;
+  };
+}
+
+// interfaces/event.interface.ts
+interface GroupEvent {
+  id: string;
+  title: string;
+  description: string;
+  startTime: Date;
+  endTime: Date;
+  attendees: string[]; // User IDs
+  meetingLink?: string;
+  recurringPattern?: {
+    frequency: 'daily' | 'weekly' | 'monthly';
+    interval: number;
+    endDate?: Date;
+  };
+}
+
+// interfaces/holiday.interface.ts
+interface Holiday {
+  id: string;
+  name: string;
+  date: Date;
+  country: string;
+  type: 'public' | 'observance' | 'bank' | 'other';
+  description?: string;
+}
+
+// interfaces/weather.interface.ts
+interface Weather {
+  location: string;
+  timestamp: Date;
+  temperature: {
+    celsius: number;
+    fahrenheit: number;
+  };
+  conditions: string;
+  icon: string;
+}
+
+// interfaces/availability.interface.ts
+interface TeamAvailability {
+  userId: string;
+  date: Date;
+  slots: {
+    startTime: string;
+    endTime: string;
+    status: 'available' | 'busy' | 'tentative';
+  }[];
+}
+
+// interfaces/message.interface.ts
+interface Message {
+  id: string;
+  senderId: string;
+  recipientId: string | null; // null for group messages
+  groupId: string | null; // null for direct messages
+  content: string;
+  timestamp: Date;
+  readBy: {
+    userId: string;
+    timestamp: Date;
+  }[];
+}
+
+// interfaces/analytics.interface.ts
+interface TeamAnalytics {
+  groupId: string;
+  timestamp: Date;
+  metrics: {
+    overlapHours: {
+      users: string[]; // User IDs
+      hours: number;
+      timeRanges: {
+        start: string;
+        end: string;
+      }[];
+    }[];
+    timezoneDistribution: {
+      timezone: string;
+      userCount: number;
+    }[];
+    coverageGaps: {
+      start: string;
+      end: string;
+      coverage: number; // percentage of team available
+    }[];
+  };
+}
+
+// types/custom.types.ts
+type TimeZone = string; // in IANA format e.g., "America/New_York"
+type LanguageCode = string; // ISO 639-1 format e.g., "en"
+type CountryCode = string; // ISO 3166-1 alpha-2 format e.g., "US"
