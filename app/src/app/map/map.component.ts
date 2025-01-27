@@ -11,6 +11,7 @@ import mapboxgl from 'mapbox-gl';
 })
 export class MapComponent implements OnInit {
   private map!: mapboxgl.Map;
+  isGlobe = true;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -24,8 +25,16 @@ export class MapComponent implements OnInit {
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v11',
         center: [0, 0],
-        zoom: 2
+        zoom: 2,
+        projection: 'globe'
       });
     }
+  }
+
+  toggleProjection() {
+    if (!this.map) return;
+    
+    this.isGlobe = !this.isGlobe;
+    this.map.setProjection(this.isGlobe ? 'globe' : 'mercator');
   }
 } 
