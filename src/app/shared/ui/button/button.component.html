@@ -1,0 +1,18 @@
+<button 
+  [ngClass]="computedClasses"
+  [type]="type"
+  [disabled]="disabled || loading"
+  (click)="handleClick($event)"
+>
+  <ng-container *ngIf="icon && iconPosition === 'left'">
+    <img *ngIf="icon.endsWith('.svg')" [src]="icon" class="h-4 w-4 mr-2" alt="icon" />
+    <i *ngIf="!icon.endsWith('.svg')" [class]="icon + ' mr-2'"></i>
+  </ng-container>
+  
+  {{ label }}
+  
+  <ng-container *ngIf="icon && iconPosition === 'right'">
+    <img *ngIf="icon.endsWith('.svg')" [src]="icon" class="h-4 w-4 ml-2" alt="icon" />
+    <i *ngIf="!icon.endsWith('.svg')" [class]="icon + ' ml-2'"></i>
+  </ng-container>
+</button>
