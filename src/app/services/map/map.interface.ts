@@ -1,4 +1,5 @@
 import { DropdownItem } from '../../shared/ui/dropdown/dropdown.interface';
+import { TeamMember } from '../../interfaces/team-member.interface';
 
 export interface MapConfig {
   container: string;
@@ -15,4 +16,6 @@ export interface MapService {
   initialize(config: MapConfig): void;
   setStyle(style: string): void;
   setProjection(projection: 'globe' | 'mercator'): void;
+  addTeamMembers(members: TeamMember[]): void;
+  clearMarkers(): void;
 } 

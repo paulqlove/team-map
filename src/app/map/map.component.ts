@@ -1,9 +1,10 @@
-import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ButtonComponent } from '../shared/ui/button/button.component';
 import { DropdownComponent } from '../shared/ui/dropdown/dropdown.component';
 import { DropdownItem } from '../shared/ui/dropdown/dropdown.interface';
 import { MapboxService } from '../services/map/map.service';
+import { sampleTeamMembers } from '../data/sample-data';
 
 @Component({
   selector: 'app-map',
@@ -12,7 +13,7 @@ import { MapboxService } from '../services/map/map.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   get isGlobe(): boolean {
     return this.mapService.currentProjection === 'globe';
   }
@@ -36,8 +37,15 @@ export class MapComponent implements OnInit {
           zoom: 2.25,
           projection: 'mercator'
         });
+        
+        // Add team members to map
+        this.mapService.addTeamMembers(sampleTeamMembers);
       }, 0);
     }
+  }
+
+  ngOnDestroy() {
+    this.mapService.clearMarkers();
   }
 
   toggleProjection() {

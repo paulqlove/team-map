@@ -4,18 +4,18 @@ import { TeamGroup } from '../interfaces/team-group.interface';
 export const sampleTeamMembers: TeamMember[] = [
   {
     id: '1',
-    email: 'sarah.chen@example.com',
-    name: 'Sarah Chen',
+    email: 'john.smith@example.com',
+    name: 'John Smith',
     profileImage: 'https://i.pravatar.cc/150?img=1',
     role: 'superuser',
     location: {
       coordinates: {
-        latitude: 1.3521,
-        longitude: 103.8198
+        latitude: 32.7767,
+        longitude: -96.7970
       },
-      city: 'Singapore',
-      country: 'Singapore',
-      timezone: 'Asia/Singapore'
+      city: 'Dallas',
+      country: 'United States',
+      timezone: 'America/Chicago'
     },
     workingHours: {
       start: '09:00',
@@ -23,8 +23,8 @@ export const sampleTeamMembers: TeamMember[] = [
       workDays: [1, 2, 3, 4, 5]
     },
     languages: [
-      { code: 'en', proficiency: 'fluent' },
-      { code: 'zh', proficiency: 'native' },
+      { code: 'en', proficiency: 'native' },
+      { code: 'es', proficiency: 'basic' },
     ],
     groups: ['team-atlas'],
     preferences: {
@@ -46,18 +46,18 @@ export const sampleTeamMembers: TeamMember[] = [
   },
   {
     id: '2',
-    email: 'james.wilson@example.com',
-    name: 'James Wilson',
+    email: 'sarah.beach@example.com',
+    name: 'Sarah Beach',
     profileImage: 'https://i.pravatar.cc/150?img=2',
     role: 'user',
     location: {
       coordinates: {
-        latitude: 51.5074,
-        longitude: -0.1278
+        latitude: 27.9944,
+        longitude: -82.4451
       },
-      city: 'London',
-      country: 'United Kingdom',
-      timezone: 'Europe/London'
+      city: 'Tampa',
+      country: 'United States',
+      timezone: 'America/New_York'
     },
     workingHours: {
       start: '08:30',
@@ -66,7 +66,6 @@ export const sampleTeamMembers: TeamMember[] = [
     },
     languages: [
       { code: 'en', proficiency: 'native' },
-      { code: 'fr', proficiency: 'intermediate' },
     ],
     groups: ['team-atlas'],
     preferences: {
@@ -88,34 +87,34 @@ export const sampleTeamMembers: TeamMember[] = [
   },
   {
     id: '3',
-    email: 'maria.garcia@example.com',
-    name: 'Maria Garcia',
+    email: 'elena.petrova@example.com',
+    name: 'Elena Petrova',
     profileImage: 'https://i.pravatar.cc/150?img=3',
     role: 'user',
     location: {
       coordinates: {
-        latitude: 19.4326,
-        longitude: -99.1332
+        latitude: 55.7558,
+        longitude: 37.6173
       },
-      city: 'Mexico City',
-      country: 'Mexico',
-      timezone: 'America/Mexico_City'
+      city: 'Moscow',
+      country: 'Russia',
+      timezone: 'Europe/Moscow'
     },
     workingHours: {
-      start: '08:00',
-      end: '17:00',
+      start: '10:00',
+      end: '19:00',
       workDays: [1, 2, 3, 4, 5]
     },
     languages: [
-      { code: 'es', proficiency: 'native' },
+      { code: 'ru', proficiency: 'native' },
       { code: 'en', proficiency: 'fluent' },
     ],
     groups: ['team-atlas'],
     preferences: {
       doNotDisturb: false,
       preferredContactHours: {
-        start: '08:00',
-        end: '16:00'
+        start: '10:00',
+        end: '18:00'
       },
       notifications: {
         email: true,
@@ -130,16 +129,16 @@ export const sampleTeamMembers: TeamMember[] = [
   },
   {
     id: '4',
-    email: 'alex.kumar@example.com',
-    name: 'Alex Kumar',
+    email: 'raj.patel@example.com',
+    name: 'Raj Patel',
     profileImage: 'https://i.pravatar.cc/150?img=4',
     role: 'user',
     location: {
       coordinates: {
-        latitude: 12.9716,
-        longitude: 77.5946
+        latitude: 19.0760,
+        longitude: 72.8777
       },
-      city: 'Bangalore',
+      city: 'Mumbai',
       country: 'India',
       timezone: 'Asia/Kolkata'
     },
@@ -151,7 +150,7 @@ export const sampleTeamMembers: TeamMember[] = [
     languages: [
       { code: 'en', proficiency: 'fluent' },
       { code: 'hi', proficiency: 'native' },
-      { code: 'kn', proficiency: 'native' },
+      { code: 'gu', proficiency: 'native' },
     ],
     groups: ['team-atlas'],
     preferences: {
@@ -167,24 +166,24 @@ export const sampleTeamMembers: TeamMember[] = [
     },
     status: {
       online: false,
-      message: 'Out for lunch',
+      message: 'In development',
       lastActive: new Date()
     }
   },
   {
     id: '5',
-    email: 'emma.mueller@example.com',
-    name: 'Emma Mueller',
+    email: 'marko.nikolovski@example.com',
+    name: 'Marko Nikolovski',
     profileImage: 'https://i.pravatar.cc/150?img=5',
     role: 'user',
     location: {
       coordinates: {
-        latitude: 52.5200,
-        longitude: 13.4050
+        latitude: 41.9973,
+        longitude: 21.4280
       },
-      city: 'Berlin',
-      country: 'Germany',
-      timezone: 'Europe/Berlin'
+      city: 'Skopje',
+      country: 'Macedonia',
+      timezone: 'Europe/Skopje'
     },
     workingHours: {
       start: '09:00',
@@ -192,8 +191,9 @@ export const sampleTeamMembers: TeamMember[] = [
       workDays: [1, 2, 3, 4, 5]
     },
     languages: [
-      { code: 'de', proficiency: 'native' },
+      { code: 'mk', proficiency: 'native' },
       { code: 'en', proficiency: 'fluent' },
+      { code: 'sr', proficiency: 'fluent' },
     ],
     groups: ['team-atlas'],
     preferences: {
@@ -215,18 +215,18 @@ export const sampleTeamMembers: TeamMember[] = [
   },
   {
     id: '6',
-    email: 'yuki.tanaka@example.com',
-    name: 'Yuki Tanaka',
+    email: 'maria.santos@example.com',
+    name: 'Maria Santos',
     profileImage: 'https://i.pravatar.cc/150?img=6',
     role: 'user',
     location: {
       coordinates: {
-        latitude: 35.6762,
-        longitude: 139.6503
+        latitude: 14.5995,
+        longitude: 120.9842
       },
-      city: 'Tokyo',
-      country: 'Japan',
-      timezone: 'Asia/Tokyo'
+      city: 'Manila',
+      country: 'Philippines',
+      timezone: 'Asia/Manila'
     },
     workingHours: {
       start: '09:00',
@@ -234,8 +234,9 @@ export const sampleTeamMembers: TeamMember[] = [
       workDays: [1, 2, 3, 4, 5]
     },
     languages: [
-      { code: 'ja', proficiency: 'native' },
-      { code: 'en', proficiency: 'intermediate' },
+      { code: 'en', proficiency: 'fluent' },
+      { code: 'fil', proficiency: 'native' },
+      { code: 'tl', proficiency: 'native' },
     ],
     groups: ['team-atlas'],
     preferences: {
@@ -257,18 +258,18 @@ export const sampleTeamMembers: TeamMember[] = [
   },
   {
     id: '7',
-    email: 'david.anderson@example.com',
-    name: 'David Anderson',
+    email: 'michael.chen@example.com',
+    name: 'Michael Chen',
     profileImage: 'https://i.pravatar.cc/150?img=7',
     role: 'user',
     location: {
       coordinates: {
-        latitude: -33.8688,
-        longitude: 151.2093
+        latitude: 37.7749,
+        longitude: -122.4194
       },
-      city: 'Sydney',
-      country: 'Australia',
-      timezone: 'Australia/Sydney'
+      city: 'San Francisco',
+      country: 'United States',
+      timezone: 'America/Los_Angeles'
     },
     workingHours: {
       start: '08:30',
@@ -277,6 +278,7 @@ export const sampleTeamMembers: TeamMember[] = [
     },
     languages: [
       { code: 'en', proficiency: 'native' },
+      { code: 'zh', proficiency: 'fluent' },
     ],
     groups: ['team-atlas'],
     preferences: {
@@ -298,18 +300,18 @@ export const sampleTeamMembers: TeamMember[] = [
   },
   {
     id: '8',
-    email: 'sofia.silva@example.com',
-    name: 'Sofia Silva',
+    email: 'emily.parker@example.com',
+    name: 'Emily Parker',
     profileImage: 'https://i.pravatar.cc/150?img=8',
     role: 'user',
     location: {
       coordinates: {
-        latitude: -23.5505,
-        longitude: -46.6333
+        latitude: 40.7128,
+        longitude: -74.0060
       },
-      city: 'São Paulo',
-      country: 'Brazil',
-      timezone: 'America/Sao_Paulo'
+      city: 'New York',
+      country: 'United States',
+      timezone: 'America/New_York'
     },
     workingHours: {
       start: '09:00',
@@ -317,9 +319,8 @@ export const sampleTeamMembers: TeamMember[] = [
       workDays: [1, 2, 3, 4, 5]
     },
     languages: [
-      { code: 'pt', proficiency: 'native' },
-      { code: 'en', proficiency: 'fluent' },
-      { code: 'es', proficiency: 'intermediate' },
+      { code: 'en', proficiency: 'native' },
+      { code: 'fr', proficiency: 'intermediate' },
     ],
     groups: ['team-atlas'],
     preferences: {
@@ -345,7 +346,7 @@ export const sampleTeamGroup: TeamGroup = {
   id: 'team-atlas',
   name: 'Team Atlas',
   description: 'Global development team working on Project Atlas',
-  createdBy: '1', // Sarah Chen's ID
+  createdBy: '1', // John Smith's ID (Dallas)
   members: sampleTeamMembers.map(member => member.id),
   settings: {
     visibility: 'private',
