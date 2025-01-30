@@ -6,6 +6,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '1',
     email: 'john.smith@example.com',
     name: 'John Smith',
+    title: 'Scrum Master',
     profileImage: 'https://i.pravatar.cc/150?img=1',
     role: 'superuser',
     location: {
@@ -48,6 +49,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '2',
     email: 'sarah.beach@example.com',
     name: 'Sarah Beach',
+    title: 'Lead Frontend Developer',
     profileImage: 'https://i.pravatar.cc/150?img=2',
     role: 'user',
     location: {
@@ -89,6 +91,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '3',
     email: 'elena.petrova@example.com',
     name: 'Elena Petrova',
+    title: 'Senior UX Designer',
     profileImage: 'https://i.pravatar.cc/150?img=3',
     role: 'user',
     location: {
@@ -131,6 +134,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '4',
     email: 'raj.patel@example.com',
     name: 'Raj Patel',
+    title: 'Backend Engineer',
     profileImage: 'https://i.pravatar.cc/150?img=4',
     role: 'user',
     location: {
@@ -174,6 +178,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '5',
     email: 'marko.nikolovski@example.com',
     name: 'Marko Nikolovski',
+    title: 'DevOps Engineer',
     profileImage: 'https://i.pravatar.cc/150?img=5',
     role: 'user',
     location: {
@@ -217,6 +222,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '6',
     email: 'maria.santos@example.com',
     name: 'Maria Santos',
+    title: 'QA Engineer',
     profileImage: 'https://i.pravatar.cc/150?img=6',
     role: 'user',
     location: {
@@ -260,6 +266,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '7',
     email: 'michael.chen@example.com',
     name: 'Michael Chen',
+    title: 'Product Owner',
     profileImage: 'https://i.pravatar.cc/150?img=7',
     role: 'user',
     location: {
@@ -302,6 +309,7 @@ export const sampleTeamMembers: TeamMember[] = [
     id: '8',
     email: 'emily.parker@example.com',
     name: 'Emily Parker',
+    title: 'UI Developer',
     profileImage: 'https://i.pravatar.cc/150?img=8',
     role: 'user',
     location: {

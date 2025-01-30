@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, ApplicationRef, ComponentRef, createComponent, EnvironmentInjector } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import mapboxgl from 'mapbox-gl';
 import { MapConfig, MapService } from './map.interface';
 import { DropdownItem } from '../../shared/ui/dropdown/dropdown.interface';
 import { TeamMember } from '../../interfaces/team-member.interface';
+import { TeamMemberMarkerComponent } from '../../components/team-member-marker/team-member-marker.component';
+import { TeamMemberPopupComponent } from '../../components/team-member-popup/team-member-popup.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ import { TeamMember } from '../../interfaces/team-member.interface';
 export class MapboxService implements MapService {
   private map!: mapboxgl.Map;
   private markers: mapboxgl.Marker[] = [];
+  private popupRefs: ComponentRef<TeamMemberPopupComponent>[] = [];
   private timeUpdateInterval?: number;
   currentProjection: 'globe' | 'mercator' = 'mercator';
 
@@ -29,7 +32,10 @@ export class MapboxService implements MapService {
 
   currentStyle: string = this.styles[0].value as string;
 
-  constructor() {
+  constructor(
+    private injector: Injector,
+    private appRef: ApplicationRef
+  ) {
     (mapboxgl as any).accessToken = environment.mapboxToken;
   }
 
@@ -51,36 +57,30 @@ export class MapboxService implements MapService {
     this.clearMarkers();
     
     members.forEach(member => {
-      // Create custom marker element
-      const markerEl = document.createElement('div');
-      markerEl.className = 'team-member-marker';
-      markerEl.innerHTML = `
-        <img 
-          src="${member.profileImage}" 
-          alt="${member.name}"
-          class="w-12 h-12 rounded-full border-2 border-white shadow-lg"
-        >
-      `;
+      // Create marker component
+      const markerComponent = createComponent(TeamMemberMarkerComponent, {
+        environmentInjector: this.injector as EnvironmentInjector,
+      });
+      markerComponent.instance.member = member;
+      this.appRef.attachView(markerComponent.hostView);
+      
+      // Create popup component
+      const popupComponent = createComponent(TeamMemberPopupComponent, {
+        environmentInjector: this.injector as EnvironmentInjector,
+      });
+      popupComponent.instance.member = member;
+      this.appRef.attachView(popupComponent.hostView);
+      this.popupRefs.push(popupComponent);
 
       // Create popup
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
-        <div class="p-2">
-          <h3 class="font-bold text-lg">${member.name}</h3>
-          <p class="text-sm text-gray-600">
-            ${member.location.city}, ${member.location.country}<br>
-            Local time: <span class="team-member-time" data-timezone="${member.location.timezone}">
-              ${new Date().toLocaleTimeString('en-US', { 
-                timeZone: member.location.timezone,
-                hour: '2-digit',
-                minute: '2-digit'
-              })}
-            </span>
-          </p>
-        </div>
-      `);
+      const popup = new mapboxgl.Popup({ 
+        offset: 25,
+        closeButton: false
+      })
+        .setDOMContent(popupComponent.location.nativeElement);
 
       // Create and store marker
-      const marker = new mapboxgl.Marker(markerEl)
+      const marker = new mapboxgl.Marker(markerComponent.location.nativeElement)
         .setLngLat([member.location.coordinates.longitude, member.location.coordinates.latitude])
         .setPopup(popup)
         .addTo(this.map);
@@ -112,6 +112,13 @@ export class MapboxService implements MapService {
     this.markers.forEach(marker => marker.remove());
     this.markers = [];
     
+    // Cleanup component references
+    this.popupRefs.forEach(ref => {
+      this.appRef.detachView(ref.hostView);
+      ref.destroy();
+    });
+    this.popupRefs = [];
+
     // Clear the time update interval
     if (this.timeUpdateInterval) {
       clearInterval(this.timeUpdateInterval);

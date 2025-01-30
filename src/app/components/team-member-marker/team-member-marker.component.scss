@@ -1,0 +1,12 @@
+.team-member-marker {
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  img {
+    transition: transform 0.2s;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+} 

@@ -1,0 +1,16 @@
+<div class="p-2 min-w-[200px]">
+  <h3 class="font-bold text-lg">{{ member.name }}</h3>
+  <p class="text-sm text-gray-500 mb-2">{{ member.title }}</p>
+  <p class="text-sm text-gray-600">
+    {{ member.location.city }}, {{ member.location.country }}<br>
+    Local time: <span class="team-member-time">{{ localTime }}</span>
+  </p>
+  <div class="mt-2 text-sm">
+    <div class="flex items-center gap-1">
+      <div class="w-2 h-2 rounded-full" 
+           [class.bg-green-500]="member.status.online"
+           [class.bg-gray-400]="!member.status.online"></div>
+      <span>{{ member.status.message }}</span>
+    </div>
+  </div>
+</div> 

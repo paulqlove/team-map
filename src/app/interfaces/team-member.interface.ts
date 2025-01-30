@@ -2,6 +2,7 @@ export interface TeamMember {
   id: string;
   email: string;
   name: string;
+  title: string;
   profileImage: string;
   role: 'superuser' | 'user';
   location: {
