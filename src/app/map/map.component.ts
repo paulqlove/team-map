@@ -32,9 +32,9 @@ export class MapComponent implements OnInit {
         this.mapService.initialize({
           container: 'map',
           style: this.mapService.currentStyle as string,
-          center: [0, 0],
-          zoom: 2,
-          projection: 'globe'
+          center: [0, 30],
+          zoom: 2.25,
+          projection: 'mercator'
         });
       }, 0);
     }

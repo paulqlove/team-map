@@ -9,7 +9,7 @@ import { DropdownItem } from '../../shared/ui/dropdown/dropdown.interface';
 })
 export class MapboxService implements MapService {
   private map!: mapboxgl.Map;
-  currentProjection: 'globe' | 'mercator' = 'globe';
+  currentProjection: 'globe' | 'mercator' = 'mercator';
 
   readonly styles: DropdownItem[] = [
     { label: 'Standard', value: 'mapbox://styles/mapbox/standard' },
