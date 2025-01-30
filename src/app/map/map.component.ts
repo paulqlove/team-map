@@ -1,50 +1,50 @@
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { environment } from '../../environments/environment';
-import mapboxgl from 'mapbox-gl';
 import { ButtonComponent } from '../shared/ui/button/button.component';
+import { DropdownComponent } from '../shared/ui/dropdown/dropdown.component';
+import { DropdownItem } from '../shared/ui/dropdown/dropdown.interface';
+import { MapboxService } from '../services/map/map.service';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, DropdownComponent],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  private map!: mapboxgl.Map;
-  isGlobe = true;
+  get isGlobe(): boolean {
+    return this.mapService.currentProjection === 'globe';
+  }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  get mapStyles(): DropdownItem[] {
+    return this.mapService.styles;
+  }
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private mapService: MapboxService
+  ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      (mapboxgl as any).accessToken = environment.mapboxToken;
-      
-      // Add a small delay to ensure the container is ready
       setTimeout(() => {
-        this.initializeMap();
+        this.mapService.initialize({
+          container: 'map',
+          style: this.mapService.currentStyle as string,
+          center: [0, 0],
+          zoom: 2,
+          projection: 'globe'
+        });
       }, 0);
     }
   }
 
-  private initializeMap() {
-    try {
-      this.map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v11',
-        center: [0, 0],
-        zoom: 2,
-        projection: 'globe'
-      });
-    } catch (error) {
-      console.error('Error initializing map:', error);
-    }
+  toggleProjection() {
+    this.mapService.setProjection(this.isGlobe ? 'mercator' : 'globe');
   }
 
-  toggleProjection() {
-    if (!this.map) return;
-    this.isGlobe = !this.isGlobe;
-    this.map.setProjection(this.isGlobe ? 'globe' : 'mercator');
+  onStyleChange(item: DropdownItem) {
+    this.mapService.setStyle(item.value as string);
   }
 } 

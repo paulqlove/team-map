@@ -9,7 +9,7 @@
     <i *ngIf="!icon.endsWith('.svg')" [class]="icon + ' mr-2'"></i>
   </ng-container>
   
-  {{ label }}
+  <ng-content></ng-content>
   
   <ng-container *ngIf="icon && iconPosition === 'right'">
     <img *ngIf="icon.endsWith('.svg')" [src]="icon" class="h-4 w-4 ml-2" alt="icon" />

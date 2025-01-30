@@ -1,0 +1,12 @@
+:host {
+  display: inline-block;
+  
+  &.w-full {
+    display: block;
+  }
+}
+
+.dropdown-menu {
+  // Add any additional styles here
+  // The main styling is handled by Tailwind classes
+} 

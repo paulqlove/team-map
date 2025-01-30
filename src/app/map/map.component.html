@@ -1,16 +1,21 @@
 <div class="map-container">
   <div id="map"></div>
-    <!-- <button (click)="toggleProjection()"
-      class="projection-toggle fixed top-4 right-4 px-4 py-2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded shadow-lg transition-all duration-200">
+  <div class="fixed top-4 right-4 z-10 flex gap-2">
+    <app-dropdown
+      [items]="mapStyles"
+      (selected)="onStyleChange($event)"
+      variant="solid"
+      size="lg"
+    >
+      Map Style
+    </app-dropdown>
+    
+    <app-button 
+      (clicked)="toggleProjection()"
+      variant="solid"
+      size="lg"
+    >
       Switch to {{ isGlobe ? 'Mercator' : 'Globe' }}
-    </button> -->
-
-  <app-button 
-    [label]="'Switch to ' + (isGlobe ? 'Mercator' : 'Globe')"
-    (click)="toggleProjection()"
-    variant="solid"
-    intent="primary"
-    size="sm"
-    class="fixed top-4 right-4"
-  ></app-button>
+    </app-button>
+  </div>
 </div> 
