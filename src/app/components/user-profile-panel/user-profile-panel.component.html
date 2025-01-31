@@ -1,0 +1,106 @@
+<div *ngIf="member" class="p-6 h-full overflow-y-auto">
+  <!-- Header -->
+  <div class="flex items-center gap-4 mb-6">
+    <img [src]="member.profileImage" 
+         [alt]="member.name"
+         class="w-20 h-20 rounded-full border-2 border-gray-200">
+    <div>
+      <h2 class="text-2xl font-bold">{{ member.name }}</h2>
+      <p class="text-gray-600">{{ member.title }}</p>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+    <div class="flex items-center gap-2 mb-2">
+      <div class="w-3 h-3 rounded-full"
+           [class.bg-green-500]="member.status.online"
+           [class.bg-gray-400]="!member.status.online"></div>
+      <span class="font-medium">{{ member.status.message }}</span>
+    </div>
+    <p class="text-sm text-gray-600">
+      Last active: {{ member.status.lastActive | date:'medium' }}
+    </p>
+  </div>
+
+  <!-- Location & Time -->
+  <div class="mb-6">
+    <h3 class="text-lg font-semibold mb-2">Location & Time</h3>
+    <div class="space-y-2">
+      <p>{{ member.location.city }}, {{ member.location.country }}</p>
+      <p>
+        Local time: 
+        <span class="team-member-time font-medium">
+          {{ localTime }}
+        </span>
+        <span class="text-sm text-gray-500 ml-2">({{ timeDifference }})</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Working Hours -->
+  <div class="mb-6">
+    <h3 class="text-lg font-semibold mb-2">Working Hours</h3>
+    <div class="space-y-2">
+      <p>{{ member.workingHours.start }} - {{ member.workingHours.end }}</p>
+      <p>{{ getWorkDays(member.workingHours.workDays) }}</p>
+    </div>
+  </div>
+
+  <!-- Languages -->
+  <div class="mb-6">
+    <h3 class="text-lg font-semibold mb-2">Languages</h3>
+    <div class="flex flex-wrap gap-2">
+      <div *ngFor="let lang of member.languages"
+           class="px-3 py-1 bg-gray-100 rounded-full text-sm">
+        {{ getLanguageName(lang.code) }}
+        <span class="text-gray-500 ml-1">({{ lang.proficiency }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Holiday -->
+  <div class="mb-6" *ngIf="upcomingHolidays[0]">
+    <h3 class="text-lg font-semibold mb-2">Next Holiday</h3>
+    <div class="p-3 bg-gray-50 rounded-lg">
+      <div class="flex justify-between items-start">
+        <div>
+          <h4 class="font-medium">{{ upcomingHolidays[0].name }}</h4>
+          <p class="text-sm text-gray-600">{{ upcomingHolidays[0].description }}</p>
+        </div>
+        <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">
+          {{ upcomingHolidays[0].date | date:'MMM d, y' }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Preferences -->
+  <div class="mb-6">
+    <h3 class="text-lg font-semibold mb-2">Contact Preferences</h3>
+    <div class="space-y-2">
+      <p *ngIf="member.preferences.doNotDisturb" class="text-amber-600">
+        Do Not Disturb Enabled
+      </p>
+      <p>
+        Preferred contact hours: 
+        {{ member.preferences.preferredContactHours.start }} - 
+        {{ member.preferences.preferredContactHours.end }}
+      </p>
+      <div class="flex gap-2">
+        <span *ngIf="member.preferences.notifications.email" 
+              class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+          <i class="bi bi-envelope me-1"></i>Email
+        </span>
+        <span *ngIf="member.preferences.notifications.inApp"
+              class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
+          <i class="bi bi-bell me-1"></i>In-app
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!member" class="p-6 text-center text-gray-500">
+  <p>Select a team member from the map to view their details</p>
+</div> 

@@ -6,6 +6,7 @@ import { DropdownItem } from '../../shared/ui/dropdown/dropdown.interface';
 import { TeamMember } from '../../interfaces/team-member.interface';
 import { TeamMemberMarkerComponent } from '../../components/team-member-marker/team-member-marker.component';
 import { TeamMemberPopupComponent } from '../../components/team-member-popup/team-member-popup.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,8 @@ export class MapboxService implements MapService {
   private popupRefs: ComponentRef<TeamMemberPopupComponent>[] = [];
   private timeUpdateInterval?: number;
   currentProjection: 'globe' | 'mercator' = 'mercator';
+  private selectedMemberSubject = new BehaviorSubject<TeamMember | undefined>(undefined);
+  selectedMember$ = this.selectedMemberSubject.asObservable();
 
   readonly styles: DropdownItem[] = [
     { label: 'Standard', value: 'mapbox://styles/mapbox/standard' },
@@ -86,6 +89,11 @@ export class MapboxService implements MapService {
         .addTo(this.map);
 
       this.markers.push(marker);
+
+      // Add click handler to marker element
+      markerComponent.location.nativeElement.addEventListener('click', () => {
+        this.selectedMemberSubject.next(member);
+      });
     });
 
     // Clear existing interval if any

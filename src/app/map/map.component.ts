@@ -2,18 +2,22 @@ import { Component, OnInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core
 import { isPlatformBrowser } from '@angular/common';
 import { ButtonComponent } from '../shared/ui/button/button.component';
 import { DropdownComponent } from '../shared/ui/dropdown/dropdown.component';
+import { UserProfilePanelComponent } from '../components/user-profile-panel/user-profile-panel.component';
 import { DropdownItem } from '../shared/ui/dropdown/dropdown.interface';
 import { MapboxService } from '../services/map/map.service';
+import { TeamMember } from '../interfaces/team-member.interface';
 import { sampleTeamMembers } from '../data/sample-data';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [ButtonComponent, DropdownComponent],
+  imports: [ButtonComponent, DropdownComponent, UserProfilePanelComponent],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
+  selectedMember?: TeamMember;
+
   get isGlobe(): boolean {
     return this.mapService.currentProjection === 'globe';
   }
@@ -25,7 +29,12 @@ export class MapComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private mapService: MapboxService
-  ) {}
+  ) {
+    // Subscribe to selected member changes
+    this.mapService.selectedMember$.subscribe(member => {
+      this.selectedMember = member;
+    });
+  }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
