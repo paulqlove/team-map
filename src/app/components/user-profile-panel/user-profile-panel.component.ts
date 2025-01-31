@@ -125,4 +125,26 @@ export class UserProfilePanelComponent implements OnChanges, OnInit, OnDestroy {
         }
       });
   }
+
+  getWikipediaLink(holidayName: string, country: string): string {
+    const encodedName = encodeURIComponent(holidayName.replace(/ /g, '_'));
+    return `https://en.wikipedia.org/wiki/${encodedName}`;
+  }
+
+  getCelebrationDetails(holidayName: string): string {
+    const celebrationDetails: { [key: string]: string } = {
+      'Memorial Day': 'Americans honor military personnel with parades, ceremonies, and decorating graves with flags and flowers.',
+      'Independence Day': 'Celebrated with fireworks, barbecues, parades, and patriotic displays across the United States.',
+      'Holi': 'Known as the Festival of Colors, people celebrate by throwing colored powder and water at each other, with music and feasts.',
+      'Ram Navami': 'Celebrated with temple ceremonies, chariot processions, and readings of the Ramayana.',
+      'Victory Day': 'Commemorated with military parades, particularly in Moscow\'s Red Square, with displays of flowers and St. George ribbons.',
+      'Russia Day': 'Marked by concerts, fireworks, and ceremonies celebrating Russian culture and heritage.',
+      'Araw ng Kagitingan': 'Honors veterans with military ceremonies, parades, and memorial services across the Philippines.',
+      'Labor Day': 'Celebrated with workers\' rallies, parades, and events highlighting labor rights and achievements.',
+      'Macedonian Independence Day': 'Macedonians celebrate with cultural events, concerts, and official ceremonies marking their sovereignty.',
+      'Saint Clement of Ohrid Day': 'Honored with church services, cultural events, and celebrations of Macedonian literacy and education.'
+    };
+
+    return celebrationDetails[holidayName] || 'A significant cultural celebration in the region.';
+  }
 } 

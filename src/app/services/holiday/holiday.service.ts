@@ -16,7 +16,7 @@ export class HolidayService {
         date: this.createDate('2024-05-27'),
         country: 'United States',
         type: 'public',
-        description: 'Federal holiday honoring military personnel'
+        description: 'National day of remembrance for fallen U.S. military service members'
       },
       {
         id: 'us-2',
